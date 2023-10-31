@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '../../../main.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,6 +92,21 @@ class __FormContentState extends State<_FormContent> {
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
 
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  Future login() async {
+    final dataa = {"username": username.text, "password": password.text};
+    String url = "http://192.168.56.1/mobileapi/customer/login";
+    final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
+    var data = json.decode(reponse.body);
+    if (data == "สำเร็จ") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
+      );
+    }
+  }
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Color wh = Colors.white;
@@ -106,6 +122,13 @@ class __FormContentState extends State<_FormContent> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
+              controller: username,
               style: TextStyle(color: wh),
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -132,6 +155,13 @@ class __FormContentState extends State<_FormContent> {
             ),
             _gap(),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
+              controller: password,
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(width: 3, color: Color(0xFF765827)),
@@ -209,10 +239,7 @@ class __FormContentState extends State<_FormContent> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
+                  login();
                   // if (_formKey.currentState?.validate() ?? false) {
                   //   /// do something
                   // }
