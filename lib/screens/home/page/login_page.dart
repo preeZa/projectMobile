@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/screens/home/page/regis_page.dart';
 
 import '../../../main.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -186,9 +186,17 @@ class __FormContentState extends State<_FormContent> {
             _gap(),
             Row(
               children: [
-                Text(
-                  'Dont\'have an account ?',
-                  style: TextStyle(color: Colors.white),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => RegisPage()));
+                  },
+                  child: Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
