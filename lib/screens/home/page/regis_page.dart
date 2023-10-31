@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/screens/home/page/login_page.dart';
 
 class RegisPage extends StatefulWidget {
   const RegisPage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _RegisPageState extends State<RegisPage> {
         body: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('lib/img/image 2_dark.png'),
+          image: AssetImage('assets/images/image 2_dark.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -231,14 +232,24 @@ class __FormContentState extends State<_FormContent> {
                   },
                 ),
               ),
+              style: TextStyle(color: wh),
+              obscureText: !_isPasswordVisible,
             ),
             _gap(),
             _gap(),
             Row(
               children: [
-                Text(
-                  'Have an account ?',
-                  style: TextStyle(color: Colors.white),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  child: const Text(
+                    "Have an account?",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),

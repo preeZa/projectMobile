@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+=======
+import 'package:store_app/screens/home/page/regis_page.dart';
+>>>>>>> 7e986783e00f180ecbfa37b06902a345caf7f7d9
 
 import '../../../main.dart';
 
@@ -192,6 +196,8 @@ class __FormContentState extends State<_FormContent> {
                   },
                 ),
               ),
+              style: TextStyle(color: wh),
+              obscureText: !_isPasswordVisible,
             ),
             CheckboxListTile(
               value: _rememberMe,
@@ -216,9 +222,17 @@ class __FormContentState extends State<_FormContent> {
             _gap(),
             Row(
               children: [
-                Text(
-                  'Dont\'have an account ?',
-                  style: TextStyle(color: Colors.white),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => RegisPage()));
+                  },
+                  child: const Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
