@@ -54,7 +54,7 @@ class _UserPageState extends State<UserPage> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
                     // Padding(padding: EdgeInsets.only(top: 5)),
-                    Text("Poplove",
+                    Text("Poploveeeeee",
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
