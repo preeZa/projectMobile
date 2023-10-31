@@ -162,6 +162,8 @@ class __FormContentState extends State<_FormContent> {
                   },
                 ),
               ),
+              style: TextStyle(color: wh),
+              obscureText: !_isPasswordVisible,
             ),
             CheckboxListTile(
               value: _rememberMe,
@@ -191,7 +193,7 @@ class __FormContentState extends State<_FormContent> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => RegisPage()));
                   },
-                  child: Text(
+                  child: const Text(
                     "Don't have an account?",
                     style: TextStyle(
                       color: Colors.white,

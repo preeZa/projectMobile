@@ -232,6 +232,8 @@ class __FormContentState extends State<_FormContent> {
                   },
                 ),
               ),
+              style: TextStyle(color: wh),
+              obscureText: !_isPasswordVisible,
             ),
             _gap(),
             _gap(),
@@ -242,7 +244,7 @@ class __FormContentState extends State<_FormContent> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   },
-                  child: Text(
+                  child: const Text(
                     "Have an account?",
                     style: TextStyle(
                       color: Colors.white,
