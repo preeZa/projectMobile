@@ -55,7 +55,6 @@ class Intropage extends StatelessWidget {
 
                 GestureDetector(
                   onTap: () {
-                    Text("StarSSDDSDDSt");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
