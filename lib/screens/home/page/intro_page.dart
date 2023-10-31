@@ -31,7 +31,7 @@ class Intropage extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 70,
+                    fontSize: 65,
                     color: Colors.white,
                   ),
                 ),
@@ -43,7 +43,7 @@ class Intropage extends StatelessWidget {
                   'SHOP',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 70,
+                    fontSize: 65,
                     color: Colors.white,
                   ),
                   textAlign: TextAlign.left,
@@ -60,19 +60,25 @@ class Intropage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const LoginPage()));
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 123, 90, 43),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    padding: const EdgeInsets.all(15),
-                    child: const Center(
-                      child: Text(
-                        'Start',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                  child: Center(
+                    child: Container(
+                      width: 300,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 123, 90, 43),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: const EdgeInsets.all(15),
+                      child: Center(
+                        child: Container(
+                          child: const Text(
+                            'Start',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
                         ),
                       ),
                     ),
