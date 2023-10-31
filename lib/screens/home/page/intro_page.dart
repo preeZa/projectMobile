@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'login_page.dart';
 
-
-
 class Intropage extends StatelessWidget {
   const Intropage({super.key});
 
@@ -57,7 +55,7 @@ class Intropage extends StatelessWidget {
 
                 GestureDetector(
                   onTap: () {
-                    Text("Start");
+                    Text("StarSSDDSDDSt");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
