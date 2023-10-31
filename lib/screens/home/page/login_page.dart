@@ -170,7 +170,7 @@ class __FormContentState extends State<_FormContent> {
                   borderSide: BorderSide(width: 3, color: Color(0xFF765827)),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 3, color: wh),
+                  borderSide: BorderSide(width: 3, color: Colors.white),
                 ),
                 labelText: 'Password',
                 labelStyle: TextStyle(color: Colors.white),
