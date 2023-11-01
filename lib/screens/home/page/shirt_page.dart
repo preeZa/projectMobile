@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projectMobile/main.dart';
 
 import '../../../Services.dart';
 import '../../../constants.dart';
@@ -47,8 +48,11 @@ class _ShirtpageState extends State<Shirtpage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset("assets/icons/menu.svg"),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MyHomePage()));
+          },
+          icon: SvgPicture.asset("assets/icons/back.svg"),
         ),
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
