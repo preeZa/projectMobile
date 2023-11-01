@@ -99,7 +99,6 @@ class _ShirtpageState extends State<Shirtpage> {
                         padding: const EdgeInsets.only(top: 40, left: 20),
                         child: SectionTitle(
                           title: something,
-                          pressSeeAll: () {},
                         ),
                       ),
                       for (int i = 0; i < products!.products.length; i++)

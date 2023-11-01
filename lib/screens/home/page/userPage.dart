@@ -17,7 +17,6 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   final _myBox = Hive.box("myBox");
   User? user;
-  String? title;
   bool isLoading = false;
 
   final double coverHeight = 150;
@@ -27,22 +26,17 @@ class _UserPageState extends State<UserPage> {
   void initState() {
     super.initState();
     isLoading = true;
-    title = 'Loading user...';
+  
     getUser();
   }
 
+
   void getUser() {
-    print(_myBox.get('user'));
     String data = _myBox.get('user');
-    user = parseUser(_myBox.get('user'));
-    print(user!.name);
+    user = Services.parseUser(_myBox.get('user'));
   }
 
-  static User parseUser(String responseBody) {
-    final Map<String, dynamic> parsed = json.decode(responseBody);
-    return User.fromJson(parsed);
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

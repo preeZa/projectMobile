@@ -1,13 +1,12 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../Services.dart';
 import '../../../constants.dart';
-import '../../../models/product.dart';
+
 import '../../../models/products.dart';
-import '../../details/details_screen.dart';
-import 'product_card.dart';
+
 import 'section_title.dart';
 
 class NewArrivalProducts extends StatefulWidget {
@@ -19,15 +18,11 @@ class NewArrivalProducts extends StatefulWidget {
 
 class _NewArrivalProductsState extends State<NewArrivalProducts> {
   Products? products;
-  Products? products_type;
-  String? title;
   bool isLoading = false;
 
   void initState() {
     super.initState();
     isLoading = true;
-    title = 'Loading products...';
-
     products = Products();
 
     Services.getProducts().then((productsFromServer) {
@@ -50,7 +45,6 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                 padding: const EdgeInsets.only(top: 40, left: 20),
                 child: SectionTitle(
                   title: "ALL",
-                  pressSeeAll: () {},
                 ),
               ),
               for (int i = 0; i < products!.products.length; i++) 

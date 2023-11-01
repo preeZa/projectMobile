@@ -68,6 +68,7 @@ class _HistorypageState extends State<Historypage> {
             ),
             _gap(),
             _gap(),
+
             Row(
               children: [
                 Padding(

@@ -1,0 +1,9 @@
+{
+    "id_product": 2,
+    "image": "https://i.pinimg.com/564x/08/6c/cd/086ccd9040fecf55bf95b8300b5d352c.jpg",
+    "name": "shirt",
+    "amount": 1,
+    "id_user": 1,
+    "price": 120,
+    "total": 120
+}
