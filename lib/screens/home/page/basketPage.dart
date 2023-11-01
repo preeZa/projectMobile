@@ -42,129 +42,129 @@ class _BasketPageState extends State<BasketPage> {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(172, 255, 255, 255),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(35),
-                    topRight: Radius.circular(35),
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35)),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: 30, bottom: 30, left: 30, right: 20),
-                    // padding: EdgeInsets.symmetric(horizontal: 20),
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://i.pinimg.com/564x/48/19/23/481923e92d2d95abb6218d78964a52c8.jpg"),
-                          fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(20),
+          for (int i = 0; i < 5; i++)
+            Padding(
+              padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(172, 255, 255, 255),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(35),
+                      topRight: Radius.circular(35),
+                      bottomLeft: Radius.circular(35),
+                      bottomRight: Radius.circular(35)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: 30, bottom: 30, left: 30, right: 20),
+                      // padding: EdgeInsets.symmetric(horizontal: 20),
+                      height: 170,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://i.pinimg.com/564x/48/19/23/481923e92d2d95abb6218d78964a52c8.jpg"),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 60),
-                    child: Column(
-                      children: [
-                        Text("Type",
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
-                        Padding(padding: EdgeInsets.only(top: 7)),
-                        Text("Shirts",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
-                        Padding(padding: EdgeInsets.only(top: 10)),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (quantity > 1) {
-                                    quantity--;
-                                  } else {
-                                    quantity = 1;
-                                  }
-                                });
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    color: Colors.red[300],
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                      )
-                                    ]),
-                                child: Icon(
-                                  CupertinoIcons.minus,
-                                  size: 16,
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 60),
+                      child: Column(
+                        children: [
+                          Text("Type",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          Padding(padding: EdgeInsets.only(top: 7)),
+                          Text("Shirts",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          Padding(padding: EdgeInsets.only(top: 10)),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    if (quantity > 1) {
+                                      quantity--;
+                                    } else {
+                                      quantity = 1;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red[300],
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 10,
+                                        )
+                                      ]),
+                                  child: Icon(
+                                    CupertinoIcons.minus,
+                                    size: 16,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                "x$quantity",
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (quantity < maxQuantity) {
-                                    quantity++;
-                                  }
-                                });
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    color: Colors.green[300],
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                      )
-                                    ]),
-                                child: Icon(
-                                  CupertinoIcons.plus,
-                                  size: 16,
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  "x$quantity",
+                                  style: TextStyle(fontSize: 16),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Padding(padding: EdgeInsets.only(top: 10)),
-                        Text(
-                          "Pirce : 400",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    if (quantity < maxQuantity) {
+                                      quantity++;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.green[300],
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 10,
+                                        )
+                                      ]),
+                                  child: Icon(
+                                    CupertinoIcons.plus,
+                                    size: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(padding: EdgeInsets.only(top: 10)),
+                          Text(
+                            "Pirce : 400",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
           Padding(
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
               child: Container(
