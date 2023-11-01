@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 import '../../constants.dart';
 import 'components/categories.dart';
 import 'components/new_arrival_products.dart';
@@ -18,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(192, 255, 255, 255),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {},
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SvgPicture.asset("assets/icons/Location.svg"),
             const SizedBox(width: defaultPadding / 2),
             Text(
-              "15/2 New Texas",
+              "poplove",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
@@ -59,22 +59,18 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "PopLoveShop",
+              "Shop",
               style: Theme.of(context)
                   .textTheme
                   .headline4!
                   .copyWith(fontWeight: FontWeight.w500, color: Colors.black),
             ),
-            const Text(
-              "best Outfits for you",
-              style: TextStyle(fontSize: 18),
-            ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: defaultPadding),
             ),
             const Categories(),
-            const NewArrivalProducts(),
-            const PopularProducts(),
+            const NewArrivalProducts()
+            // const PopularProducts(),
           ],
         ),
       ),

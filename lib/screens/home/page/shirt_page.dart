@@ -6,7 +6,7 @@ import '../components/categories.dart';
 
 class Shirtpage extends StatefulWidget {
   const Shirtpage({Key? key}) : super(key: key);
-
+  
   @override
   State<Shirtpage> createState() => _ShirtpageState();
 }
@@ -14,6 +14,7 @@ class Shirtpage extends StatefulWidget {
 class _ShirtpageState extends State<Shirtpage> {
   @override
   Widget build(BuildContext context) {
+    // int args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

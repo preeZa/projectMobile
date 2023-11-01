@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter/services.dart';
+import '../../../Services.dart';
 import '../../../constants.dart';
-import '../../../models/Product.dart';
+import '../../../models/product.dart';
+import '../../../models/products.dart';
 import '../../details/details_screen.dart';
 import 'product_card.dart';
 import 'section_title.dart';
@@ -15,45 +18,82 @@ class NewArrivalProducts extends StatefulWidget {
 }
 
 class _NewArrivalProductsState extends State<NewArrivalProducts> {
+  Products? products;
+  String? title;
+  bool isLoading = false;
+
+  void initState() {
+    super.initState();
+    isLoading = true;
+    title = 'Loading products...';
+    products = Products();
+
+    Services.getProducts().then((productsFromServer) {
+      setState(() {
+        products = productsFromServer;
+        isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-          child: SectionTitle(
-            title: "New Arrival",
-            pressSeeAll: () {},
-          ),
-        ),
-        SingleChildScrollView(
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              demo_product.length,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: defaultPadding),
-                child: ProductCard(
-                  title: demo_product[index].title,
-                  image: demo_product[index].image,
-                  price: demo_product[index].price,
-                  bgColor: demo_product[index].bgColor,
-                  press: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              DetailsScreen(product: demo_product[index]),
-                        ));
-                  },
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40,left: 20),
+                child: SectionTitle(
+                  title: "ALL",
+                  pressSeeAll: () {},
                 ),
               ),
-            ),
-          ),
-        )
-      ],
-    );
+              for (int i = 0; i < products!.products.length; i++)
+                SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  scrollDirection: Axis.horizontal,
+                  child: Column(children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: 30, bottom: 30, left: 10, right: 10),
+                      // padding: EdgeInsets.symmetric(horizontal: 20),
+                      height: 350,
+                      width: 320,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(products!.products[i].image),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    )
+                  ]
+                      // List.generate(
+                      //   products!.products.length,
+                      //   (index) => Padding(
+                      //     padding: const EdgeInsets.only(right: defaultPadding),
+                      //     child: ProductCard(
+                      //       title: "",
+                      //       image: products!.products[index].image,
+                      //       price: products!.products[index].price.toInt(),
+                      //       bgColor: Color.fromARGB(255, 255, 255, 255),
+                      //       press: () {
+                      //         // Navigator.push(
+                      //         //     context,
+                      //         //     MaterialPageRoute(
+                      //         //       builder: (context) =>
+                      //         //           DetailsScreen(product: demo_product[index]),
+                      //         //     ));
+                      //       },
+                      //     ),
+                      //   ),
+                      // ),
+                      ),
+                )
+            ],
+          );
   }
 }

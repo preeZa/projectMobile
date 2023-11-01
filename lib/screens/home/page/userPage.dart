@@ -62,7 +62,7 @@ class _UserPageState extends State<UserPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(padding: EdgeInsets.only(left: 20)),
+                        Padding(padding: EdgeInsets.only(left: 40)),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -70,28 +70,22 @@ class _UserPageState extends State<UserPage> {
                                 padding: EdgeInsets.only(
                               top: 20,
                             )),
-                            Text("Name          pop",
+                            Text("Name : pop",
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
                             Padding(padding: EdgeInsets.only(top: 5)),
-                            Text("Phone           0981616960",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black)),
-                            Padding(padding: EdgeInsets.only(top: 5)),
-                            Text("Addres",
+                            Text("Phone : 0981616960",
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
                             Padding(padding: EdgeInsets.only(top: 5)),
                             Container(
-                              width: 200,
+                              width: 320,
                               child: Text(
-                                  '72 หมู่ที่ 3 ตำบลหนองขอนกว้าง อำเภอเมือง จังหวัด อุดรธานี 41000',
+                                  'Addres 72 : หมู่ที่ 3 ตำบลหนองขอนกว้าง อำเภอเมือง จังหวัด อุดรธานี 41000',
                                   maxLines: 4,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -111,7 +105,7 @@ class _UserPageState extends State<UserPage> {
     return CircleAvatar(
       radius: 100,
       backgroundImage: NetworkImage(
-          'https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png'),
+          'https://i.pinimg.com/564x/e6/e8/fe/e6e8fe6196d4230dc52c301deaebbf35.jpg'),
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/screens/home/components/new_arrival_products.dart';
-import 'package:store_app/screens/home/home_screen.dart';
-import 'package:store_app/screens/home/page/basketPage.dart';
-import 'package:store_app/screens/home/page/intro_page.dart';
-import 'package:store_app/screens/home/page/login_page.dart';
-import 'package:store_app/screens/home/page/userPage.dart';
+import 'package:projectMobile/screens/home/components/new_arrival_products.dart';
+import 'package:projectMobile/screens/home/home_screen.dart';
+import 'package:projectMobile/screens/home/page/basketPage.dart';
+import 'package:projectMobile/screens/home/page/history_page.dart';
+import 'package:projectMobile/screens/home/page/intro_page.dart';
+import 'package:projectMobile/screens/home/page/login_page.dart';
+import 'package:projectMobile/screens/home/page/shirt_page.dart';
+import 'package:projectMobile/screens/home/page/userPage.dart';
 
 import 'constants.dart';
 
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
         "LoginPage": (context) => LoginPage(),
         "basketPage": (context) => BasketPage(),
         "UserPage": (context) => UserPage(),
+        "Historypage": (context) => Historypage(),
+        "Shirtpage": (context) => Shirtpage(),
       },
     );
   }

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:store_app/screens/home/page/regis_page.dart';
+import 'package:projectMobile/screens/home/page/regis_page.dart';
 
+import '../../../Services.dart';
 import '../../../main.dart';
 
 class LoginPage extends StatefulWidget {
@@ -103,7 +104,8 @@ class __FormContentState extends State<_FormContent> {
     String url = "http://192.168.56.1/mobileapi/customer/login";
     final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
     var data = json.decode(reponse.body);
-    if (data == "สำเร็จ") {
+
+    if (reponse.statusCode == 201) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage()),

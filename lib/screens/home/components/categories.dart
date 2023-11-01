@@ -5,7 +5,6 @@ import '../../../constants.dart';
 import '../../../models/Category.dart';
 import '../menuScreen.dart';
 
-
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);
 
@@ -25,12 +24,22 @@ class _CategoriesState extends State<Categories> {
           icon: demo_categories[index].icon,
           title: demo_categories[index].title,
           press: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      MenuScreen(category: demo_categories[index]),
-                ));
+            if (index == 0) {
+              Navigator.pushNamed(context, "Shirtpage", arguments: index);
+              print("Dress");
+            } else if (index == 1) {
+              print("Shirt");
+            } else if (index == 2) {
+              print("Pants");
+            } else if (index == 3) {
+              print("Tshirt");
+            }
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) =>
+            //           MenuScreen(category: demo_categories[index]),
+            //     ));
           },
         ),
         separatorBuilder: (context, index) =>

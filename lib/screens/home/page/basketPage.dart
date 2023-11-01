@@ -166,7 +166,7 @@ class _BasketPageState extends State<BasketPage> {
                         GestureDetector(
                           onTap: () {
                             // Navigator.pushNamed(context, "LoginPage");
-                            Navigator.pushNamed(context, "/");
+                            Navigator.pushNamed(context, "Historypage");
                           },
                           child: Container(
                             decoration: BoxDecoration(

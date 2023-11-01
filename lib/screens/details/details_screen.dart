@@ -3,18 +3,18 @@ import 'package:flutter_svg/svg.dart';
 
 
 import '../../constants.dart';
-import '../../models/Product.dart';
+
 import 'components/color_dot.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key, required this.product}) : super(key: key);
+  const DetailsScreen({Key? key,}) : super(key: key);
 
-  final Product product;
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: product.bgColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: const BackButton(color: Colors.black),
         actions: [
@@ -33,7 +33,7 @@ class DetailsScreen extends StatelessWidget {
       body: Column(
         children: [
           Image.asset(
-            product.image,
+            "assets/images/product_0.png",
             height: MediaQuery.of(context).size.height * 0.4,
             fit: BoxFit.cover,
           ),
@@ -56,13 +56,13 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          product.title,
+                          "A",
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ),
                       const SizedBox(width: defaultPadding),
                       Text(
-                        "\$" + product.price.toString(),
+                        "\$ 200" ,
                         style: Theme.of(context).textTheme.headline6,
                       ),
                     ],
