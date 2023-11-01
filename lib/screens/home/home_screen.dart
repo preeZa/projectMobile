@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "SHOP",
+              "best outfit \n Your lifestyle",
               style: Theme.of(context)
                   .textTheme
                   .headline4!

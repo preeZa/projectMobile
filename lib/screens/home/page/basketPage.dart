@@ -75,15 +75,15 @@ class _BasketPageState extends State<BasketPage> {
                     padding: EdgeInsets.symmetric(vertical: 60),
                     child: Column(
                       children: [
-                        Text("Type",
+                        Text("Shirts",
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black)),
                         Padding(padding: EdgeInsets.only(top: 7)),
-                        Text("Shirts",
+                        Text("Amount",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black)),
                         Padding(padding: EdgeInsets.only(top: 10)),

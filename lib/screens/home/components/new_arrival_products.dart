@@ -50,11 +50,10 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                 padding: const EdgeInsets.only(top: 40, left: 20),
                 child: SectionTitle(
                   title: "ALL",
-                  pressSeeAll: () {},
                 ),
               ),
-              for (int i = 0; i < products!.products.length; i++) 
-              //  if (products!.products[i].name == "shirts") 
+              for (int i = 0; i < products!.products.length; i++)
+                //  if (products!.products[i].name == "shirts")
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics()),
