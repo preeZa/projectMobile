@@ -71,29 +71,17 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.black,
-              shadows: [
-                BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(10, 10),
-                  blurRadius: 40,
-                ),
-                BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(-20, -20),
-                  blurRadius: 25,
-                )
-              ],
+              color: Colors.brown,
             ),
             label: 'สินค้า',
             backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket, color: Colors.black),
+              icon: Icon(Icons.shopping_basket, color: Colors.brown),
               label: 'ตะกร้าสินค้า',
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.black),
+              icon: Icon(Icons.person, color: Colors.brown),
               label: 'บัญชีของฉัน',
               backgroundColor: Colors.white),
         ],
