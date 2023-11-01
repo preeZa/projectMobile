@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SvgPicture.asset("assets/icons/Location.svg"),
             const SizedBox(width: defaultPadding / 2),
             Text(
-              "poplove",
+              "POPLOVE",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(
               Icons.notifications,
-              color: Colors.yellow,
+              color: Color(0xFF765827),
+              // color: Colors.amber,
               shadows: [
                 Shadow(
                   color: Color.fromARGB(255, 105, 100, 100),
@@ -59,11 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Shop",
+              "SHOP",
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(fontWeight: FontWeight.w500, color: Colors.black),
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: defaultPadding),
