@@ -76,7 +76,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                     SizedBox(
                       child: Row(
                         children: [
-                          Text("Shirt",
+                          Text(products!.products[i].name,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
@@ -87,7 +87,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: defaultPadding),
                           ),
-                          Text("250 Bath",
+                          Text(products!.products[i].price.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
