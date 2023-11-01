@@ -9,6 +9,9 @@ class BasketPage extends StatefulWidget {
 }
 
 class _BasketPageState extends State<BasketPage> {
+  int quantity = 0;
+  final int maxQuantity = 60;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +91,13 @@ class _BasketPageState extends State<BasketPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                print("Container clicked");
+                                setState(() {
+                                  if (quantity > 1) {
+                                    quantity--;
+                                  } else {
+                                    quantity = 1;
+                                  }
+                                });
                               },
                               child: Container(
                                 padding: EdgeInsets.all(4),
@@ -111,13 +120,17 @@ class _BasketPageState extends State<BasketPage> {
                             Container(
                               margin: EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                "x1",
+                                "x$quantity",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ),
                             GestureDetector(
                               onTap: () {
-                                print("Container clicked");
+                                setState(() {
+                                  if (quantity < maxQuantity) {
+                                    quantity++;
+                                  }
+                                });
                               },
                               child: Container(
                                 padding: EdgeInsets.all(4),
