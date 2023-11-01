@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -93,6 +94,7 @@ class _FormContent extends StatefulWidget {
 }
 
 class __FormContentState extends State<_FormContent> {
+  final _myBox = Hive.box("myBox");
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
 
@@ -103,9 +105,12 @@ class __FormContentState extends State<_FormContent> {
     final dataa = {"username": username.text, "password": password.text};
     String url = "http://192.168.56.1/mobileapi/customer/login";
     final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
-    var data = json.decode(reponse.body);
+    var data = reponse.body;
 
     if (reponse.statusCode == 201) {
+      print(data);
+      _myBox.put('user', data);
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage()),

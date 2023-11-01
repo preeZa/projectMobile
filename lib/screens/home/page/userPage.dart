@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
+import '../../../Services.dart';
+import '../../../models/user.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -9,6 +15,34 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  final _myBox = Hive.box("myBox");
+  User? user;
+  String? title;
+  bool isLoading = false;
+
+  final double coverHeight = 150;
+  final double profileHeight = 130;
+
+  @override
+  void initState() {
+    super.initState();
+    isLoading = true;
+    title = 'Loading user...';
+    getUser();
+  }
+
+  void getUser() {
+    print(_myBox.get('user'));
+    String data = _myBox.get('user');
+    user = parseUser(_myBox.get('user'));
+    print(user!.name);
+  }
+
+  static User parseUser(String responseBody) {
+    final Map<String, dynamic> parsed = json.decode(responseBody);
+    return User.fromJson(parsed);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +90,7 @@ class _UserPageState extends State<UserPage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                   // Padding(padding: EdgeInsets.only(top: 5)),
-                  Text("Poploveeeeee",
+                  Text(user!.username,
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -72,13 +106,13 @@ class _UserPageState extends State<UserPage> {
                               padding: EdgeInsets.only(
                             top: 20,
                           )),
-                          Text("Name : pop",
+                          Text("Name : "+user!.name,
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                           Padding(padding: EdgeInsets.only(top: 5)),
-                          Text("Phone : 0981616960",
+                          Text("Phone : "+user!.phone,
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -87,7 +121,7 @@ class _UserPageState extends State<UserPage> {
                           Container(
                             width: 320,
                             child: Text(
-                                'Addres 72 : หมู่ที่ 3 ตำบลหนองขอนกว้าง อำเภอเมือง จังหวัด อุดรธานี 41000',
+                                'Addres : '+user!.addres,
                                 maxLines: 4,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -161,7 +195,7 @@ class _UserPageState extends State<UserPage> {
     return CircleAvatar(
       radius: 100,
       backgroundImage: NetworkImage(
-          'https://i.pinimg.com/564x/e6/e8/fe/e6e8fe6196d4230dc52c301deaebbf35.jpg'),
+          user!.image),
     );
   }
 }

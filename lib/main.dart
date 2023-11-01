@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:projectMobile/screens/home/components/new_arrival_products.dart';
 import 'package:projectMobile/screens/home/home_screen.dart';
 import 'package:projectMobile/screens/home/page/basketPage.dart';
@@ -10,7 +12,10 @@ import 'package:projectMobile/screens/home/page/userPage.dart';
 
 import 'constants.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  var box = await Hive.openBox("myBox");
   runApp(const MyApp());
 }
 
