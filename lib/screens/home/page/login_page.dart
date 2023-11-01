@@ -215,8 +215,10 @@ class __FormContentState extends State<_FormContent> {
               side: BorderSide(color: wh),
               checkColor: wh,
               activeColor: Color(0xFF765827),
+              controlAffinity: ListTileControlAffinity.leading,
+              dense: true,
+              contentPadding: const EdgeInsets.all(0),
             ),
-            _gap(),
             _gap(),
             Row(
               children: [
