@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 import '../../../constants.dart';
 
 // import '../screens/home/components/History_order/order_history.dart';
@@ -61,11 +60,9 @@ class _HistorypageState extends State<Historypage> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: defaultPadding),
             ),
-            // const Categories(),
             // const OrderhistoryProducts(),
             // const OrderhistoryProducts(),
             // const OrderhistoryProducts(),
-            // const PopularProducts(),
           ],
         ),
       ),

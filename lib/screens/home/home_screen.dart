@@ -36,18 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.notifications,
-              color: Color(0xFF765827),
-              // color: Colors.amber,
-              shadows: [
-                Shadow(
-                  color: Color.fromARGB(255, 105, 100, 100),
-                  offset: Offset(2, 2),
-                  blurRadius: 3,
-                ),
-              ],
-            ),
+            icon: SvgPicture.asset("assets/icons/Notification.svg"),
             onPressed: () {},
           ),
         ],
