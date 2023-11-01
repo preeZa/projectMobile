@@ -118,8 +118,8 @@ class _UserPageState extends State<UserPage> {
                           ),
                         ),
                         icon: Icon(
-                          Icons.edit, // ไอคอนที่จะใช้
-                          color: Colors.white, // สีของไอคอน
+                          Icons.edit,
+                          color: Colors.white,
                         ),
                       ),
                     ],
