@@ -27,17 +27,21 @@ class _CategoriesState extends State<Categories> {
           press: () {
             if (index == 0) {
               // Navigator.pushNamed(context, "Shirtpage", arguments: "Dress");
-              Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Dress")));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Shirtpage("dress")));
               print("Dress");
             } else if (index == 1) {
-               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Shirt")));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Shirtpage("shirt")));
               print("Shirt");
             } else if (index == 2) {
-               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Pants")));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Shirtpage("pants")));
               print("Pants");
             } else if (index == 3) {
-               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Tshirt")));
-              print("Tshirt");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Shirtpage("hats")));
+              print("Hats");
             }
             // Navigator.push(
             //     context,
