@@ -104,7 +104,7 @@ class __FormContentState extends State<_FormContent> {
     String url = "http://192.168.56.1/mobileapi/customer/login";
     final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
     var data = json.decode(reponse.body);
-    
+
     if (reponse.statusCode == 201) {
       Navigator.push(
         context,
@@ -212,9 +212,6 @@ class __FormContentState extends State<_FormContent> {
                 'Remember me',
                 style: TextStyle(color: Colors.white),
               ),
-              controlAffinity: ListTileControlAffinity.leading,
-              dense: true,
-              contentPadding: const EdgeInsets.all(0),
               side: BorderSide(color: wh),
               checkColor: wh,
               activeColor: Color(0xFF765827),

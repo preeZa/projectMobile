@@ -99,10 +99,59 @@ class _UserPageState extends State<UserPage> {
                       )
                     ],
                   ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // ทำงานเมื่อปุ่มถูกคลิก
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF765827),
+                        ),
+                        label: Text(
+                          "Edit Profile",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        icon: Icon(
+                          Icons.edit, // ไอคอนที่จะใช้
+                          color: Colors.white, // สีของไอคอน
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  // ทำงานเมื่อปุ่มถูกคลิก
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF765827),
+                ),
+                icon: Icon(
+                  Icons.shopping_basket, // ไอคอนที่จะใช้
+                  color: Colors.white, // สีของไอคอน
+                ),
+                label: Text(
+                  "Purchase Order",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
