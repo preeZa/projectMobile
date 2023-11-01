@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:projectMobile/Services.dart';
 import 'package:projectMobile/models/baskets.dart';
 import 'package:projectMobile/models/user.dart';
+import 'package:http/http.dart' as http;
 
 class BasketPage extends StatefulWidget {
   const BasketPage({Key? key}) : super(key: key);
@@ -33,6 +34,7 @@ class _BasketPageState extends State<BasketPage> {
   void parseBaskets() {
     String data = _myBox.get('user');
     user = Services.parseUser(_myBox.get('user'));
+    _myBox.put('id_user', user!.id_user);
     // print(data);
 
     Services.getBaskets().then((basketsFromServer) {
@@ -50,8 +52,44 @@ class _BasketPageState extends State<BasketPage> {
     });
   }
 
-  Future down() async {
-    
+  Future up(int id_pro) async {
+    String url = "http://192.168.56.1/mobileapi/basket/up/" +
+        id_pro.toString() +
+        "/" +
+        user!.id_user.toString();
+
+    final reponse = await http.put(Uri.parse(url));
+
+    if (reponse.statusCode == 200) {
+      Navigator.pushNamed(context, "MyHomePage");
+    }
+  }
+
+  Future down(int id_pro) async {
+    String url = "http://192.168.56.1/mobileapi/basket/down/" +
+        id_pro.toString() +
+        "/" +
+        user!.id_user.toString();
+
+    final reponse = await http.put(Uri.parse(url));
+
+    if (reponse.statusCode == 200) {
+      Navigator.pushNamed(context, "MyHomePage");
+    }
+  }
+
+  Future deleteBasket(int id_pro) async {
+    String url = "http://192.168.56.1/mobileapi/basket/" +
+        id_pro.toString() +
+        "/" +
+        user!.id_user.toString();
+
+    print(url);
+    final reponse = await http.delete(Uri.parse(url));
+
+    if (reponse.statusCode == 200) {
+      Navigator.pushNamed(context, "MyHomePage");
+    }
   }
 
   @override
@@ -139,9 +177,18 @@ class _BasketPageState extends State<BasketPage> {
                                       GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            if (baskets!.baskets[i].amount >
+                                            if (baskets!.baskets[i].amount <=
                                                 1) {
-                                              down(baskets!.baskets[i].id_user,);
+                                              print("ddddddddddddddddd");
+                                              int id_pro = baskets!
+                                                  .baskets[i].id_product
+                                                  .toInt();
+                                              deleteBasket(id_pro);
+                                            } else {
+                                              int id_pro = baskets!
+                                                  .baskets[i].id_product
+                                                  .toInt();
+                                              down(id_pro);
                                             }
                                           });
                                         },
@@ -178,8 +225,12 @@ class _BasketPageState extends State<BasketPage> {
                                       GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            if (quantity < maxQuantity) {
-                                              quantity++;
+                                            if (baskets!.baskets[i].amount >=
+                                                -2) {
+                                              int id_pro = baskets!
+                                                  .baskets[i].id_product
+                                                  .toInt();
+                                              up(id_pro);
                                             }
                                           });
                                         },
@@ -229,58 +280,60 @@ class _BasketPageState extends State<BasketPage> {
                       ),
                     ),
                 Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
-                    child: Container(
-                        padding: EdgeInsets.only(
-                            top: 15, left: 20, right: 20, bottom: 15),
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(172, 255, 255, 255),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(35),
-                              topRight: Radius.circular(35),
-                              bottomLeft: Radius.circular(35),
-                              bottomRight: Radius.circular(35)),
-                        ),
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Total : $total bath",
+                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        top: 15, left: 20, right: 20, bottom: 15),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(172, 255, 255, 255),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(35),
+                          topRight: Radius.circular(35),
+                          bottomLeft: Radius.circular(35),
+                          bottomRight: Radius.circular(35)),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("Total : $total bath",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            // Navigator.pushNamed(context, "LoginPage");
+                            Navigator.pushNamed(context, "Historypage");
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 123, 90, 43),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: const EdgeInsets.all(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.shopping_cart, // ไอคอนที่จะใช้
+                                  color: Colors.white, // สีของไอคอน
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  'Pay',
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold)),
-                              Spacer(),
-                              GestureDetector(
-                                onTap: () {
-                                  // Navigator.pushNamed(context, "LoginPage");
-                                  Navigator.pushNamed(context, "Historypage");
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 123, 90, 43),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.all(15),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.shopping_cart, // ไอคอนที่จะใช้
-                                        color: Colors.white, // สีของไอคอน
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        'Pay',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ],
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
                                   ),
                                 ),
-                              ),
-                            ]))),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           );

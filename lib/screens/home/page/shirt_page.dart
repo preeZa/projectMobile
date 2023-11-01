@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
 import 'package:projectMobile/main.dart';
-
+import 'package:http/http.dart' as http;
 import '../../../Services.dart';
 import '../../../constants.dart';
 import '../../../models/products.dart';
@@ -20,6 +23,7 @@ class Shirtpage extends StatefulWidget {
 }
 
 class _ShirtpageState extends State<Shirtpage> {
+  final _myBox = Hive.box("myBox");
   String something;
   _ShirtpageState(this.something);
   Products? products;
@@ -40,6 +44,21 @@ class _ShirtpageState extends State<Shirtpage> {
         isLoading = false;
       });
     });
+  }
+
+  Future addProduct(int id_pro) async {
+    final dataa = {
+      "id_product": id_pro,
+      "amount": 1,
+      "id_user": _myBox.get('id_user')
+    };
+    String url = "http://192.168.56.1/mobileapi/basket";
+    final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
+    var data = reponse.body;
+
+    if (reponse.statusCode == 200) {
+      Navigator.pushNamed(context, "MyHomePage");
+    }
   }
 
   @override
@@ -155,7 +174,11 @@ class _ShirtpageState extends State<Shirtpage> {
                                         Icons.shopping_bag_sharp,
                                         size: 24.0,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        addProduct(products!
+                                            .products[i].id_product
+                                            .toInt());
+                                      },
                                     ),
                                   ],
                                 ),

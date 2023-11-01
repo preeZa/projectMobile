@@ -1,13 +1,13 @@
-
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
 import '../../../Services.dart';
 import '../../../constants.dart';
-
 import '../../../models/products.dart';
-
 import 'section_title.dart';
+import 'package:http/http.dart' as http;
 
 class NewArrivalProducts extends StatefulWidget {
   const NewArrivalProducts({Key? key}) : super(key: key);
@@ -19,6 +19,7 @@ class NewArrivalProducts extends StatefulWidget {
 class _NewArrivalProductsState extends State<NewArrivalProducts> {
   Products? products;
   bool isLoading = false;
+  final _myBox = Hive.box("myBox");
 
   void initState() {
     super.initState();
@@ -31,6 +32,21 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
         isLoading = false;
       });
     });
+  }
+
+  Future addProduct(int id_pro) async {
+    final dataa = {
+      "id_product": id_pro,
+      "amount": 1,
+      "id_user": _myBox.get('id_user')
+    };
+    String url = "http://192.168.56.1/mobileapi/basket";
+    final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
+    var data = reponse.body;
+
+    if (reponse.statusCode == 200) {
+      Navigator.pushNamed(context, "MyHomePage");
+    }
   }
 
   @override
@@ -47,8 +63,8 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                   title: "ALL",
                 ),
               ),
-              for (int i = 0; i < products!.products.length; i++) 
-              //  if (products!.products[i].name == "shirts") 
+              for (int i = 0; i < products!.products.length; i++)
+                //  if (products!.products[i].name == "shirts")
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics()),
@@ -100,7 +116,10 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                               Icons.shopping_bag_sharp,
                               size: 24.0,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              addProduct(
+                                  products!.products[i].id_product.toInt());
+                            },
                           ),
                         ],
                       ),

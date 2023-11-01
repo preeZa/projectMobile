@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
         "LoginPage": (context) => LoginPage(),
         "basketPage": (context) => BasketPage(),
         "UserPage": (context) => UserPage(),
-        "Historypage": (context) => Historypage(),
+        "MyHomePage": (context) => MyHomePage(),
+        // "Historypage": (context) => Historypage(),
         // "Shirtpage": (context) => Shirtpage(),
       },
     );

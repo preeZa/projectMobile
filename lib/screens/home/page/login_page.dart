@@ -110,6 +110,7 @@ class __FormContentState extends State<_FormContent> {
     if (reponse.statusCode == 201) {
       print(data);
       _myBox.put('user', data);
+      
 
       Navigator.push(
         context,
