@@ -59,7 +59,10 @@ class _ShirtpageState extends State<Shirtpage> {
         ),
         actions: [
           IconButton(
-            icon: SvgPicture.asset("assets/icons/Notification.svg"),
+            icon: Icon(
+              Icons.shopping_basket,
+              color: Colors.black38,
+            ),
             onPressed: () {},
           ),
         ],
@@ -86,7 +89,6 @@ class _ShirtpageState extends State<Shirtpage> {
               padding: EdgeInsets.symmetric(vertical: defaultPadding),
             ),
             const Categories(),
-            Text(something),
             isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),
@@ -124,7 +126,7 @@ class _ShirtpageState extends State<Shirtpage> {
                               SizedBox(
                                 child: Row(
                                   children: [
-                                    Text("Shirt",
+                                    Text(products!.products[i].name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline6!
@@ -135,7 +137,7 @@ class _ShirtpageState extends State<Shirtpage> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: defaultPadding),
                                     ),
-                                    Text("250 Bath",
+                                    Text(products!.products[i].price.toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline6!
