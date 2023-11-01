@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:projectMobile/screens/home/page/shirt_page.dart';
 
 import '../../../constants.dart';
 import '../../../models/Category.dart';
@@ -25,13 +26,17 @@ class _CategoriesState extends State<Categories> {
           title: demo_categories[index].title,
           press: () {
             if (index == 0) {
-              Navigator.pushNamed(context, "Shirtpage", arguments: index);
+              // Navigator.pushNamed(context, "Shirtpage", arguments: "Dress");
+              Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Dress")));
               print("Dress");
             } else if (index == 1) {
+               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Shirt")));
               print("Shirt");
             } else if (index == 2) {
+               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Pants")));
               print("Pants");
             } else if (index == 3) {
+               Navigator.push(context,MaterialPageRoute(builder: (context) => Shirtpage("Tshirt")));
               print("Tshirt");
             }
             // Navigator.push(
