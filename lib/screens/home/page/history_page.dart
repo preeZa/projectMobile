@@ -68,125 +68,158 @@ class _HistorypageState extends State<Historypage> {
             ),
             _gap(),
             _gap(),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 40),
-                  child: SectionTitle(
-                    title: "Order [1]",
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 140),
-                ),
-                SizedBox(
-                  child: Row(
-                    children: [
-                      Text("Total"),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                      ),
-                      Text("1500"),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                      ),
-                      Text("Bath")
-                    ],
-                  ),
-                )
-              ],
-            ),
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(defaultPadding),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  for (int i = 0; i < 5; i++)
-                    Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(172, 255, 255, 255),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(35),
-                              topRight: Radius.circular(35),
-                              bottomLeft: Radius.circular(35),
-                              bottomRight: Radius.circular(35)),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  top: 30, bottom: 30, left: 30, right: 20),
-                              // padding: EdgeInsets.symmetric(horizontal: 20),
-                              height: 170,
-                              width: 170,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://i.pinimg.com/564x/48/19/23/481923e92d2d95abb6218d78964a52c8.jpg"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                            SizedBox(
-                                child: Row(
+            for (int i = 0; i < 1; i++)
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            child: Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 60),
-                                  child: Column(
-                                    children: [
-                                      Text("Shirts",
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black)),
-                                      Padding(padding: EdgeInsets.only(top: 7)),
-                                      Text("Amount",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black)),
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 10)),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Text(
-                                              "x2",
-                                              style: TextStyle(fontSize: 16),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 10)),
-                                      Text(
-                                        "Pirce : 400",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
+                                  padding: EdgeInsets.only(left: 50),
+                                  child: SectionTitle(
+                                    title: "Order",
                                   ),
                                 ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 140),
+                                ),
+                                Text("Total"),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5),
+                                ),
+                                Text("1240"),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5),
+                                ),
+                                Text("Bath")
                               ],
-                            ))
-                          ],
-                        ),
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics(),
+                            ),
+                            scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.all(defaultPadding),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < 3; i++)
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 15, right: 15, bottom: 20),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(172, 255, 255, 255),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(35),
+                                            topRight: Radius.circular(35),
+                                            bottomLeft: Radius.circular(35),
+                                            bottomRight: Radius.circular(35)),
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                top: 30,
+                                                bottom: 30,
+                                                left: 30,
+                                                right: 20),
+                                            // padding: EdgeInsets.symmetric(horizontal: 20),
+                                            height: 170,
+                                            width: 170,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      "https://i.pinimg.com/564x/48/19/23/481923e92d2d95abb6218d78964a52c8.jpg"),
+                                                  fit: BoxFit.cover),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                              child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 60),
+                                                child: Column(
+                                                  children: [
+                                                    Text("Shirts",
+                                                        style: TextStyle(
+                                                            fontSize: 25,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.black)),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 7)),
+                                                    Text("Amount",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.black)),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 10)),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          margin: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10),
+                                                          child: Text(
+                                                            "x2",
+                                                            style: TextStyle(
+                                                                fontSize: 16),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 10)),
+                                                    Text(
+                                                      "Pirce : 400",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                ],
+                  ],
+                ),
               ),
-            ),
             // const OrderhistoryProducts(),
             // const OrderhistoryProducts(),
             // const OrderhistoryProducts(),
