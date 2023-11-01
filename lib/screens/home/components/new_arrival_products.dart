@@ -19,6 +19,7 @@ class NewArrivalProducts extends StatefulWidget {
 
 class _NewArrivalProductsState extends State<NewArrivalProducts> {
   Products? products;
+  Products? products_type;
   String? title;
   bool isLoading = false;
 
@@ -26,6 +27,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
     super.initState();
     isLoading = true;
     title = 'Loading products...';
+
     products = Products();
 
     Services.getProducts().then((productsFromServer) {
@@ -51,7 +53,8 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                   pressSeeAll: () {},
                 ),
               ),
-              for (int i = 0; i < products!.products.length; i++)
+              for (int i = 0; i < products!.products.length; i++) 
+              //  if (products!.products[i].name == "shirts") 
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics()),
