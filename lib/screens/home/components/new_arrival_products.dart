@@ -45,7 +45,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
         : Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40,left: 20),
+                padding: const EdgeInsets.only(top: 40, left: 20),
                 child: SectionTitle(
                   title: "ALL",
                   pressSeeAll: () {},
@@ -68,6 +68,44 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                             image: NetworkImage(products!.products[i].image),
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    SizedBox(
+                      child: Row(
+                        children: [
+                          Text("Shirt",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87)),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                          ),
+                          Text("250 Bath",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.deepOrange,
+                                      fontSize: 16)),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                          ),
+                          FloatingActionButton.extended(
+                            label: Text('Add Cart'),
+                            backgroundColor: Colors.brown,
+                            icon: Icon(
+                              Icons.shopping_bag_sharp,
+                              size: 24.0,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
                     )
                   ]
