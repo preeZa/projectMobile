@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         "basketPage": (context) => BasketPage(),
         "UserPage": (context) => UserPage(),
         "Historypage": (context) => Historypage(),
-        "Shirtpage": (context) => Shirtpage(),
+        // "Shirtpage": (context) => Shirtpage(),
       },
     );
   }
