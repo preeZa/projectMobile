@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 import '../components/categories.dart';
+
 class TshirtPage extends StatefulWidget {
   const TshirtPage({Key? key}) : super(key: key);
 
@@ -41,7 +42,7 @@ class _TshirtPageState extends State<TshirtPage> {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(fontWeight: FontWeight.w500, color: Colors.black),
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
             ),
             const Text(
               "best Outfits for you",
