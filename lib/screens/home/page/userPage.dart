@@ -133,7 +133,7 @@ class _UserPageState extends State<UserPage> {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  // ทำงานเมื่อปุ่มถูกคลิก
+                  Navigator.pushNamed(context, "Historypage");
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF765827),
