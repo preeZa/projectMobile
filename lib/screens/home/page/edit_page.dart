@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:projectMobile/main.dart';
+import 'package:projectMobile/screens/home/page/userPage.dart';
 
 import '../../../Services.dart';
 import '../../../models/user.dart';
@@ -45,7 +47,10 @@ class _EditUserPageState extends State<EditUserPage> {
             Icons.arrow_back,
             color: Color(0xFF765827),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          },
         ),
       ),
       body: Container(

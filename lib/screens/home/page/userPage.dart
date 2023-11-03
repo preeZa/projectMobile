@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:projectMobile/screens/home/page/edit_page.dart';
+import 'package:projectMobile/screens/home/page/history_page.dart';
 
 import '../../../Services.dart';
 import '../../../models/user.dart';
@@ -26,17 +28,15 @@ class _UserPageState extends State<UserPage> {
   void initState() {
     super.initState();
     isLoading = true;
-  
+
     getUser();
   }
-
 
   void getUser() {
     String data = _myBox.get('user');
     user = Services.parseUser(_myBox.get('user'));
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,13 +100,13 @@ class _UserPageState extends State<UserPage> {
                               padding: EdgeInsets.only(
                             top: 20,
                           )),
-                          Text("Name : "+user!.name,
+                          Text("Name : " + user!.name,
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                           Padding(padding: EdgeInsets.only(top: 5)),
-                          Text("Phone : "+user!.phone,
+                          Text("Phone : " + user!.phone,
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -114,8 +114,7 @@ class _UserPageState extends State<UserPage> {
                           Padding(padding: EdgeInsets.only(top: 5)),
                           Container(
                             width: 320,
-                            child: Text(
-                                'Addres : '+user!.addres,
+                            child: Text('Addres : ' + user!.addres,
                                 maxLines: 4,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -133,7 +132,10 @@ class _UserPageState extends State<UserPage> {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () {
-                          // ทำงานเมื่อปุ่มถูกคลิก
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditUserPage()));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFF765827),
@@ -161,7 +163,9 @@ class _UserPageState extends State<UserPage> {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, "Historypage");
+                  // Navigator.pushNamed(context, "Historypage");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Historypage()));
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF765827),
@@ -188,8 +192,7 @@ class _UserPageState extends State<UserPage> {
   Widget ProfileImg() {
     return CircleAvatar(
       radius: 100,
-      backgroundImage: NetworkImage(
-          user!.image),
+      backgroundImage: NetworkImage(user!.image),
     );
   }
 }
