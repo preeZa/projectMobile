@@ -13,10 +13,10 @@ import 'models/user.dart';
 class Services {
   static final _myBox = Hive.box("myBox");
 
-  static const String url = "http://192.168.56.1/mobileapi";
-  static const String url_pro = "http://192.168.56.1/mobileapi/product";
-  static const String url_user = "http://192.168.56.1/mobileapi/product/1";
-  static const String url_basket = "http://192.168.56.1/mobileapi/basket/user";
+  static const String url = "http://192.168.1.5/mobileapi";
+  static const String url_pro = "http://192.168.1.5/mobileapi/product";
+  static const String url_user = "http://192.168.1.5/mobileapi/product/1";
+  static const String url_basket = "http://192.168.1.5/mobileapi/basket/user";
 
   static Future<Products> getProducts() async {
     try {

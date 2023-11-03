@@ -131,6 +131,8 @@ class _BasketPageState extends State<BasketPage> {
                     Padding(
                       padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
                       child: Container(
+                        height: 250,
+                        width: 170,
                         decoration: BoxDecoration(
                           color: Color.fromARGB(172, 255, 255, 255),
                           borderRadius: BorderRadius.only(
@@ -144,7 +146,7 @@ class _BasketPageState extends State<BasketPage> {
                           children: [
                             Container(
                               margin: EdgeInsets.only(
-                                  top: 20, bottom: 20, left: 30, right: 20),
+                                  top: 10, bottom: 10, left: 30, right: 20),
                               // padding: EdgeInsets.symmetric(horizontal: 20),
                               height: 170,
                               width: 170,
@@ -157,7 +159,7 @@ class _BasketPageState extends State<BasketPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 60),
+                              padding: EdgeInsets.symmetric(vertical: 35),
                               child: Column(
                                 children: [
                                   Text("Type",

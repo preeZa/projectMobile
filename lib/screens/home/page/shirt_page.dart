@@ -52,7 +52,7 @@ class _ShirtpageState extends State<Shirtpage> {
       "amount": 1,
       "id_user": _myBox.get('id_user')
     };
-    String url = "http://192.168.56.1/mobileapi/basket";
+    String url = "http://192.168.1.5/mobileapi/basket";
     final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
     var data = reponse.body;
 
