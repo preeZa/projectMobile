@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -5,6 +7,8 @@ import 'package:projectMobile/Services.dart';
 import 'package:projectMobile/models/baskets.dart';
 import 'package:projectMobile/models/user.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../main.dart';
 
 class BasketPage extends StatefulWidget {
   const BasketPage({Key? key}) : super(key: key);
@@ -45,7 +49,7 @@ class _BasketPageState extends State<BasketPage> {
           if (baskets!.baskets[i].id_user == user!.id_user) {
             int data = baskets!.baskets[i].total.toInt();
             total = total + data;
-            print(total);
+            // print(total);
           }
         }
       });
@@ -53,7 +57,7 @@ class _BasketPageState extends State<BasketPage> {
   }
 
   Future up(int id_pro) async {
-    String url = "http://192.168.56.1/mobileapi/basket/up/" +
+    String url = "http://192.168.1.5/mobileapi/basket/up/" +
         id_pro.toString() +
         "/" +
         user!.id_user.toString();
@@ -66,7 +70,7 @@ class _BasketPageState extends State<BasketPage> {
   }
 
   Future down(int id_pro) async {
-    String url = "http://192.168.56.1/mobileapi/basket/down/" +
+    String url = "http://192.168.1.5/mobileapi/basket/down/" +
         id_pro.toString() +
         "/" +
         user!.id_user.toString();
@@ -79,16 +83,63 @@ class _BasketPageState extends State<BasketPage> {
   }
 
   Future deleteBasket(int id_pro) async {
-    String url = "http://192.168.56.1/mobileapi/basket/" +
+    String url = "http://192.168.1.5/mobileapi/basket/" +
         id_pro.toString() +
         "/" +
         user!.id_user.toString();
 
-    print(url);
     final reponse = await http.delete(Uri.parse(url));
 
     if (reponse.statusCode == 200) {
       Navigator.pushNamed(context, "MyHomePage");
+    }
+  }
+
+  Future pay(int total) async {
+    final dataa = {"id_user": _myBox.get('id_user'), "total": total};
+
+    String url = "http://192.168.1.5/mobileapi/addbill";
+    final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
+
+    String url_getIdbile = await "http://192.168.1.5/mobileapi/getbill/" +
+        _myBox.get('id_user').toString();
+    final reponse_getIdbile = await http.get(Uri.parse(url_getIdbile));
+    print(reponse_getIdbile.body);
+
+    if (reponse_getIdbile.statusCode == 200) {
+      for (int i = 0; i < baskets!.baskets.length; i++) {
+        if (baskets!.baskets[i].id_user == user!.id_user) {
+          final bodyPostOrder = {
+          "id_bill": reponse_getIdbile.body,
+          "id_product": baskets!.baskets[i].id_product,
+          "amount": baskets!.baskets[i].amount,
+          "sum": baskets!.baskets[i].total
+          };
+          print(bodyPostOrder);
+        
+          String url_addOrder = await "http://192.168.1.5/mobileapi/addorder";
+          final reponse_addOrder = await http.post(Uri.parse(url_addOrder),body: jsonEncode(bodyPostOrder));
+          print(reponse_addOrder.statusCode);
+
+          if (reponse_addOrder.statusCode == 200) {
+            String url = "http://192.168.1.5/mobileapi/basket/" +
+                baskets!.baskets[i].id_product.toString() +
+                "/" +
+                user!.id_user.toString();
+
+            final reponse = await http.delete(Uri.parse(url));
+
+            if (reponse.statusCode == 200) {
+              print("yes");
+            }
+          }
+        }
+        
+      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
+      );
     }
   }
 
@@ -304,7 +355,8 @@ class _BasketPageState extends State<BasketPage> {
                         GestureDetector(
                           onTap: () {
                             // Navigator.pushNamed(context, "LoginPage");
-                            Navigator.pushNamed(context, "Historypage");
+                            // Navigator.pushNamed(context, "Historypage");
+                            pay(total);
                           },
                           child: Container(
                             decoration: BoxDecoration(

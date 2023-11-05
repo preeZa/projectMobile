@@ -7,6 +7,8 @@ import 'package:projectMobile/models/baskets.dart';
 import 'package:projectMobile/models/product.dart';
 
 
+import 'models/bill.dart';
+import 'models/bills.dart';
 import 'models/products.dart';
 import 'models/user.dart';
 
@@ -15,8 +17,32 @@ class Services {
 
   static const String url = "http://192.168.1.5/mobileapi";
   static const String url_pro = "http://192.168.1.5/mobileapi/product";
-  static const String url_user = "http://192.168.1.5/mobileapi/product/1";
+
   static const String url_basket = "http://192.168.1.5/mobileapi/basket/user";
+  static const String url_bill = "http://192.168.1.5/mobileapi/bill/history/";
+
+  static Future<Bills> getBills() async {
+    try {
+      final response = await http.get(Uri.parse(url_bill+_myBox.get('id_user').toString()));
+      if (200 == response.statusCode) {
+        return parseBills(response.body);
+      } else {
+        return Bills();
+      }
+    } catch (e) {
+      print('Error ${e.toString()}');
+      return Bills();
+    }
+  }
+
+  static Bills parseBills(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    List<Bill> bills =
+        parsed.map<Bill>((json) => Bill.fromJson(json)).toList();
+    Bills p = Bills();
+    p.bills = bills;
+    return p;
+  }
 
   static Future<Products> getProducts() async {
     try {

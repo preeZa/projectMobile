@@ -40,7 +40,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
       "amount": 1,
       "id_user": _myBox.get('id_user')
     };
-    String url = "http://192.168.56.1/mobileapi/basket";
+    String url = "http://192.168.1.5/mobileapi/basket";
     final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
     var data = reponse.body;
 
@@ -70,19 +70,19 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                       parent: AlwaysScrollableScrollPhysics()),
                   scrollDirection: Axis.horizontal,
                   child: Column(children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 30, bottom: 30, left: 10, right: 10),
-                        // padding: EdgeInsets.symmetric(horizontal: 20),
-                        height: 350,
-                        width: 320,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(products!.products[i].image),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: 30, bottom: 30, left: 10, right: 10),
+                      // padding: EdgeInsets.symmetric(horizontal: 20),
+                      height: 350,
+                      width: 320,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(products!.products[i].image),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(20),
                       ),
+                    ),
                     SizedBox(
                       child: Row(
                         children: [
