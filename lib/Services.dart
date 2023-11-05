@@ -9,6 +9,8 @@ import 'package:projectMobile/models/product.dart';
 
 import 'models/bill.dart';
 import 'models/bills.dart';
+import 'models/iorder.dart';
+import 'models/iorders.dart';
 import 'models/products.dart';
 import 'models/user.dart';
 
@@ -20,6 +22,31 @@ class Services {
 
   static const String url_basket = "http://192.168.1.5/mobileapi/basket/user";
   static const String url_bill = "http://192.168.1.5/mobileapi/bill/history/";
+  static const String url_Iorder = "http://192.168.1.5/mobileapi/getorder";
+
+
+  static Future<Iorders> getIorders() async {
+    try {
+      final response = await http.get(Uri.parse(url_Iorder));
+      if (200 == response.statusCode) {
+        return parseIorders(response.body);
+      } else {
+        return Iorders();
+      }
+    } catch (e) {
+      print('Error ${e.toString()}');
+      return Iorders();
+    }
+  }
+
+  static Iorders parseIorders(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    List<Iorder> iorders =
+        parsed.map<Iorder>((json) => Iorder.fromJson(json)).toList();
+    Iorders p = Iorders();
+    p.iorders = iorders;
+    return p;
+  }
 
   static Future<Bills> getBills() async {
     try {

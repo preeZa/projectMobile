@@ -8,6 +8,7 @@ import 'package:projectMobile/screens/home/components/section_title.dart';
 import '../../../Services.dart';
 import '../../../constants.dart';
 import '../../../models/bills.dart';
+import '../../../models/iorders.dart';
 
 // import '../screens/home/components/History_order/order_history.dart';
 
@@ -21,6 +22,7 @@ class Historypage extends StatefulWidget {
 //Lastest
 class _HistorypageState extends State<Historypage> {
   Bills? bills;
+  Iorders? iorders;
   bool isLoading = false;
   int num = 1;
   final _myBox = Hive.box("myBox");
@@ -33,6 +35,12 @@ class _HistorypageState extends State<Historypage> {
     Services.getBills().then((billsFromServer) {
       setState(() {
         bills = billsFromServer;
+        isLoading = false;
+      });
+    });
+    Services.getIorders().then((iordersFromServer) {
+      setState(() {
+        iorders = iordersFromServer;
         isLoading = false;
       });
     });
@@ -112,7 +120,7 @@ class _HistorypageState extends State<Historypage> {
                                   padding: EdgeInsets.only(
                                       left: 15, right: 15, bottom: 10)),
                               Text(
-                                "Order "+bills!.bills[i].numberrow.toString(),
+                                "Order " + bills!.bills[i].numberrow.toString(),
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -123,7 +131,7 @@ class _HistorypageState extends State<Historypage> {
                                   padding: EdgeInsets.only(
                                       left: 140, right: 15, bottom: 10)),
                               Text(
-                                "Total "+bills!.bills[i].total.toString(),
+                                "Total " + bills!.bills[i].total.toString(),
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -133,15 +141,19 @@ class _HistorypageState extends State<Historypage> {
                             ],
                           ),
                         ),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                left: 15, right: 15, bottom: 20)),
+                        
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15, right: 15, bottom: 20)),
+                                  
                         SingleChildScrollView(
                           physics: const BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics()),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
+                              for (int j = 0; j < iorders!.iorders.length; j++)
+                               if(bills!.bills[i].id_bill==iorders!.iorders[j].id_bill)
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 15, right: 15, bottom: 20),
@@ -163,15 +175,15 @@ class _HistorypageState extends State<Historypage> {
                                         margin: EdgeInsets.only(
                                             top: 10,
                                             bottom: 10,
-                                            left: 30,
-                                            right: 20),
+                                            left: 20,
+                                            right: 10),
                                         // padding: EdgeInsets.symmetric(horizontal: 20),
-                                        height: 80,
-                                        width: 80,
+                                        height: 100,
+                                        width: 100,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: NetworkImage(
-                                                  "https://cdn-icons-png.flaticon.com/512/219/219969.png"),
+                                                  iorders!.iorders[j].image),
                                               fit: BoxFit.cover),
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -193,7 +205,7 @@ class _HistorypageState extends State<Historypage> {
                                             Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 7)),
-                                            Text("Shirt",
+                                            Text(iorders!.iorders[j].name,
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.bold,
@@ -205,14 +217,14 @@ class _HistorypageState extends State<Historypage> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 10),
                                               child: Text(
-                                                "x2",
+                                                "x"+iorders!.iorders[j].amount.toString(),
                                                 style: TextStyle(fontSize: 12),
                                               ),
                                             ),
                                             Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 7)),
-                                            Text("Price 120",
+                                            Text("Price "+iorders!.iorders[j].sum.toString(),
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.bold,
@@ -228,104 +240,109 @@ class _HistorypageState extends State<Historypage> {
                                   ),
                                 ),
                               ),
-                              for (int j = 0; j < 4; j++)
-                                // แถว
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 15, right: 15, bottom: 20),
-                                  child: Container(
-                                    height: 200,
-                                    width: 260,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromARGB(172, 255, 255, 255),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(35),
-                                          topRight: Radius.circular(35),
-                                          bottomLeft: Radius.circular(35),
-                                          bottomRight: Radius.circular(35)),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              top: 10,
-                                              bottom: 10,
-                                              left: 30,
-                                              right: 20),
-                                          // padding: EdgeInsets.symmetric(horizontal: 20),
-                                          height: 80,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "https://cdn-icons-png.flaticon.com/512/219/219969.png"),
-                                                fit: BoxFit.cover),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 20,
-                                              bottom: 10,
-                                              right: 30,
-                                              top: 50),
-                                          child: Column(
-                                            children: [
-                                              Text("Type",
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black)),
-                                              Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 7)),
-                                              Text("Shirt",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black)),
-                                              Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 10)),
-                                              Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    horizontal: 10),
-                                                child: Text(
-                                                  "x2",
-                                                  style:
-                                                      TextStyle(fontSize: 12),
-                                                ),
-                                              ),
-                                              Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 7)),
-                                              Text("Price 120",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255,
-                                                              58,
-                                                              49,
-                                                              49))),
-                                              Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 10)),
-                                            ],
-                                            
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              // for (int j = 0; j < iorders!.iorders.length; j++)
+                              //   // if(bills!.bills[i].id_bill==iorders!.iorders[i].id_bill)
+                              //   // แถว
+                              //   Padding(
+                              //     padding: EdgeInsets.only(
+                              //         left: 15, right: 15, bottom: 20),
+                              //     child: Container(
+                              //       height: 200,
+                              //       width: 260,
+                              //       decoration: BoxDecoration(
+                              //         color: Color.fromARGB(172, 255, 255, 255),
+                              //         borderRadius: BorderRadius.only(
+                              //             topLeft: Radius.circular(35),
+                              //             topRight: Radius.circular(35),
+                              //             bottomLeft: Radius.circular(35),
+                              //             bottomRight: Radius.circular(35)),
+                              //       ),
+                              //       child: Row(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.start,
+                              //         children: [
+                              //           Container(
+                              //             margin: EdgeInsets.only(
+                              //                 top: 10,
+                              //                 bottom: 10,
+                              //                 left: 30,
+                              //                 right: 20),
+                              //             // padding: EdgeInsets.symmetric(horizontal: 20),
+                              //             height: 80,
+                              //             width: 80,
+                              //             decoration: BoxDecoration(
+                              //               image: DecorationImage(
+                              //                   image: NetworkImage(
+                              //                       iorders!.iorders[i].image),
+                              //                   fit: BoxFit.cover),
+                              //               borderRadius:
+                              //                   BorderRadius.circular(20),
+                              //             ),
+                              //           ),
+                              //           Padding(
+                              //             padding: EdgeInsets.only(
+                              //                 left: 20,
+                              //                 bottom: 10,
+                              //                 right: 30,
+                              //                 top: 50),
+                              //             child: Column(
+                              //               children: [
+                              //                 Text("Type",
+                              //                     style: TextStyle(
+                              //                         fontSize: 20,
+                              //                         fontWeight:
+                              //                             FontWeight.bold,
+                              //                         color: Colors.black)),
+                              //                 Padding(
+                              //                     padding:
+                              //                         EdgeInsets.only(top: 7)),
+                              //                 Text(iorders!.iorders[i].name,
+                              //                     style: TextStyle(
+                              //                         fontSize: 12,
+                              //                         fontWeight:
+                              //                             FontWeight.bold,
+                              //                         color: Colors.black)),
+                              //                 Padding(
+                              //                     padding:
+                              //                         EdgeInsets.only(top: 10)),
+                              //                 Container(
+                              //                   margin: EdgeInsets.symmetric(
+                              //                       horizontal: 10),
+                              //                   child: Text(
+                              //                     "x" +
+                              //                         iorders!.iorders[i].amount
+                              //                             .toString(),
+                              //                     style:
+                              //                         TextStyle(fontSize: 12),
+                              //                   ),
+                              //                 ),
+                              //                 Padding(
+                              //                     padding:
+                              //                         EdgeInsets.only(top: 7)),
+                              //                 Text(
+                              //                     "Price " +
+                              //                         iorders!.iorders[i].sum
+                              //                             .toString(),
+                              //                     style: TextStyle(
+                              //                         fontSize: 12,
+                              //                         fontWeight:
+                              //                             FontWeight.bold,
+                              //                         color:
+                              //                             const Color.fromARGB(
+                              //                                 255,
+                              //                                 58,
+                              //                                 49,
+                              //                                 49))),
+                              //                 Padding(
+                              //                     padding:
+                              //                         EdgeInsets.only(top: 10)),
+                              //               ],
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ),
                             ],
                           ),
                         ),
