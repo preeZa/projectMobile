@@ -1,5 +1,11 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:projectMobile/screens/home/page/login_page.dart';
+
+import '../../../Services.dart';
 
 class RegisPage extends StatefulWidget {
   const RegisPage({Key? key}) : super(key: key);
@@ -97,6 +103,34 @@ class __FormContentState extends State<_FormContent> {
 
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  TextEditingController username = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController addres = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  Future registerAcc() async {
+    final dataa = {
+      "username": username.text,
+      "name": name.text,
+      "phone": phone.text,
+      "addres": addres.text,
+      "password": password.text
+    };
+    String url = "http://192.168.1.15/mobileapi/customer";
+    final reponse = await http.post(Uri.parse(url), body: jsonEncode(dataa));
+    var data = reponse.body;
+
+    if (reponse.statusCode == 200) {
+      print(data);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+    }
+  }
+
   Color wh = Colors.white;
 
   @override
@@ -110,6 +144,12 @@ class __FormContentState extends State<_FormContent> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
               style: TextStyle(color: wh),
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -130,9 +170,16 @@ class __FormContentState extends State<_FormContent> {
                   borderSide: BorderSide(color: wh),
                 ),
               ),
+              controller: username,
             ),
             _gap(),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
               style: TextStyle(color: wh),
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -153,9 +200,16 @@ class __FormContentState extends State<_FormContent> {
                   borderSide: BorderSide(color: wh),
                 ),
               ),
+              controller: name,
             ),
             _gap(),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
               style: TextStyle(color: wh),
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -176,9 +230,16 @@ class __FormContentState extends State<_FormContent> {
                   borderSide: BorderSide(color: wh),
                 ),
               ),
+              controller: phone,
             ),
             _gap(),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
               style: TextStyle(color: wh),
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -199,9 +260,17 @@ class __FormContentState extends State<_FormContent> {
                   borderSide: BorderSide(color: wh),
                 ),
               ),
+              controller: addres,
             ),
             _gap(),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please enter';
+                }
+                return null;
+              },
+              controller: password,
               decoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(width: 3, color: Color(0xFF765827)),
@@ -270,6 +339,7 @@ class __FormContentState extends State<_FormContent> {
                   ),
                 ),
                 onPressed: () {
+                  registerAcc();
                   // if (_formKey.currentState?.validate() ?? false) {
                   //   /// do something
                   // }
