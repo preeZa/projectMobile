@@ -21,20 +21,38 @@ class _EditUserPageState extends State<EditUserPage> {
   User? user;
   bool isLoading = false;
 
+  final _formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _addressController = TextEditingController();
+
   final double coverHeight = 150;
   final double profileHeight = 130;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     isLoading = true;
-
-    getUser();
+    if (_myBox.get('user') != null) {
+      getUser();
+    }
   }
 
   void getUser() {
     String data = _myBox.get('user');
     user = Services.parseUser(_myBox.get('user'));
+    _nameController.text = user!.name;
+    _phoneController.text = user!.phone;
+    _addressController.text = user!.addres;
   }
 
   @override
@@ -135,9 +153,9 @@ class _EditUserPageState extends State<EditUserPage> {
                 ),
               ),
               _gap(),
-              buildTextField("Name", "Input"),
-              buildTextField("Phone", "Input"),
-              buildTextField("Address", "Input"),
+              buildTextField("Name", "Input", _nameController),
+              buildTextField("Phone", "Input", _phoneController),
+              buildTextField("Address", "Input", _addressController),
               _gap(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -180,10 +198,12 @@ class _EditUserPageState extends State<EditUserPage> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder) {
+  Widget buildTextField(
+      String labelText, String placeholder, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(bottom: 3),
           labelText: labelText,
@@ -205,8 +225,18 @@ class _EditUserPageState extends State<EditUserPage> {
           ),
         ),
         cursorColor: Colors.brown,
+        validator: (value) => validateUsernameOrPhone(value, labelText),
       ),
     );
+  }
+
+  String? validateUsernameOrPhone(String? value, String labelText) {
+    if (labelText == "Name" || labelText == "Phone") {
+      if (value == null || value.isEmpty) {
+        return 'Please enter your $labelText.';
+      }
+    }
+    return null;
   }
 
   Widget ProfileImg() {
