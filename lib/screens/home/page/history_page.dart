@@ -35,12 +35,23 @@ class _HistorypageState extends State<Historypage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Icon(Icons.history),
+              const SizedBox(width: defaultPadding / 2),
               Text(
                 "HISTORY",
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
         backgroundColor: Color.fromARGB(192, 163, 148, 106),
         body: ListView(
@@ -53,13 +64,8 @@ class _HistorypageState extends State<Historypage> {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.history,
-                    size: 40,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
                   Text(
-                    "History Cart",
+                    "Cart History",
                     style: TextStyle(
                         fontSize: 29,
                         fontWeight: FontWeight.bold,
