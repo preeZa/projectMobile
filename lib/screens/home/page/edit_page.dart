@@ -99,8 +99,10 @@ class _EditUserPageState extends State<EditUserPage> {
                       ),
                     ),
                     Positioned(
+                      top: 90,
                       bottom: 0,
                       right: 0,
+                      left: 80,
                       child: Container(
                         height: 40,
                         width: 40,
@@ -119,9 +121,13 @@ class _EditUserPageState extends State<EditUserPage> {
                           ],
                           color: Color(0xFF765827),
                         ),
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.white,
+                        child: IconButton(
+                          padding: EdgeInsetsDirectional.only(top: 0),
+                          icon: Icon(
+                            Icons.camera_alt,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
                         ),
                       ),
                     ),
