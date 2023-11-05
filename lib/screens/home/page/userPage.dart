@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:projectMobile/screens/home/page/edit_page.dart';
 import 'package:projectMobile/screens/home/page/history_page.dart';
+import 'package:projectMobile/screens/home/page/login_page.dart';
 
 import '../../../Services.dart';
 import '../../../models/user.dart';
@@ -176,6 +177,32 @@ class _UserPageState extends State<UserPage> {
                 ),
                 label: Text(
                   "Purchase Order",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Navigator.pushNamed(context, "Historypage");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 63, 50, 30),
+                ),
+                icon: Icon(
+                  Icons.exit_to_app, // ไอคอนที่จะใช้
+                  color: Colors.white, // สีของไอคอน
+                ),
+                label: Text(
+                  "ออกจากระบบ",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
